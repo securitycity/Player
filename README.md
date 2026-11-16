@@ -17,19 +17,19 @@ INSTALLATION
 Create a .env file and add the necessary settings for configuration "config.py".
 1. Clone the repository and "cd" into "Player".
 2. Install the required dependencies:
-     "python3 -m venv env"
-     "source env/bin/activate"
-     "pip install -r requirements"
+  - "python3 -m venv env"
+  - "source env/bin/activate"
+  - "pip install -r requirements"
 
 RUNNING THE APP
 ---------------
 1. Start the server endpoint.
-     "uvicorn app:app --host 0.0.0.0 --port 8080"
+  - "uvicorn app:app --host 0.0.0.0 --port 8080"
 2. Start celery worker.
-     "celery -A api.tasks worker --loglevel=info"
-3 Finally start the telegram bot
-    "cd bot"
-    "python3 bot.py"
+  - "celery -A api.tasks worker --loglevel=info"
+3. Finally start the telegram bot
+  - "cd bot"
+  - "python3 bot.py"
 
 Please feel free to fork and upgrade. Still working on some improvements.
 ENJOY. THANK YOU!
