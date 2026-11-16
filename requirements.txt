@@ -1,0 +1,15 @@
+asyncio
+bs4
+celery
+fastapi
+magnet2torrent
+pydantic-settings
+pydub
+python-telegram-bot
+redis
+requests
+selenium
+strawberry-graphql[fastapi]
+sqlalchemy
+uvicorn
+yt-dlp

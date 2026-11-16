@@ -1,0 +1,49 @@
+version: '3.9'
+services:
+  bot:
+    build: .
+    command: python bot/bot.py
+    depends_on:
+      - api
+      - redis
+    networks:
+      - server
+
+  api:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    depends_on:
+      - redis
+    networks:
+      - server
+
+  worker:
+    build: .
+    command: celery -A api.tasks worker --loglevel=info
+    depends_on:
+      - redis
+    networks:
+      - server
+
+  redis:
+    image: redis
+    networks:
+      - server
+
+  db:
+    image: postgres:17
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_DB: ${PG_NAME}
+      POSTGRES_HOST: ${PG_HOST}
+    networks:
+      - server
+
+
+    
+networks:
+    server:
+      driver: bridge
